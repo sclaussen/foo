@@ -1,0 +1,58 @@
+{
+    "name": "Quest",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "nodeGypDependencies": true,
+            "version": "lts"
+        },
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+        "ghcr.io/devcontainers/features/python:1": {
+            "installTools": true,
+            "version": "none"
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "vscode",
+            "uid": "1000",
+            "gid": "1000"
+        },
+        "ghcr.io/devcontainers/features/aws-cli:1": {},
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.flake8", 
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "ms-toolsai.jupyter",
+                "christian-kohler.path-intellisense",
+                "ms-vscode.vscode-json"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.flake8Enabled": true,
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                },
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "[python]": {
+                    "editor.tabSize": 4,
+                    "editor.insertSpaces": true
+                }
+            }
+        }
+    },
+    "forwardPorts": [8501, 8888],
+    "postCreateCommand": "pip install --upgrade pip && pip install langchain langsmith langchain-community langchain-openai langchain-anthropic streamlit gradio fastapi uvicorn requests pandas numpy matplotlib seaborn jupyter notebook jupyterlab",
+    "remoteUser": "vscode"
+}
